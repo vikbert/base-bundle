@@ -1,0 +1,33 @@
+imports:
+    - { resource: parameters.yml }
+
+fos_rest:
+    body_listener: true
+    format_listener: true
+    view:
+        default_engine: php
+        view_response_listener: force
+        formats:
+            jsonp: true
+            json: true
+            xml: true
+            rss: true
+            txt: true
+        templating_formats:
+            html: false
+            csv: true
+        force_redirects:
+            html: true
+    routing_loader:
+        default_format: json
+
+framework:
+    secret: "%kernel.secret%"
+    test: ~
+    router: { resource: "%kernel.root_dir%/routing.yml" }
+    csrf_protection: true
+    validation: { enable_annotations: true }
+    templating:
+        engines: ['php']
+    session:
+        storage_id: session.storage.filesystem
