@@ -18,7 +18,7 @@ use Wk\BaseBundle\Lib\Object;
 class ObjectTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Data provider for testToArray
+     * Data provider for testTo
      *
      * @return array
      */
@@ -47,7 +47,6 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
      * @param array  $expectedArray
      * @param Object $object
      *
-     * @group base
      * @dataProvider dataToArray
      */
     public function testToArray(array $expectedArray, Object $object)

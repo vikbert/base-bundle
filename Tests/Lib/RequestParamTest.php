@@ -52,7 +52,6 @@ class RequestParamTest extends \PHPUnit_Framework_TestCase
      * @param mixed $variable
      *
      * @dataProvider dataConvertType
-     * @group base
      */
     public function testConvertType($expected, $variable)
     {

@@ -35,8 +35,6 @@ class CrudControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Tests the private method findDocumentById
-     *
-     * @group base
      */
     public function testFindDocumentById()
     {

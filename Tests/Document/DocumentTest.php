@@ -21,8 +21,6 @@ class DocumentTest extends WebTestCase
 {
     /**
      * Tests serialization of a base document
-     *
-     * @group base
      */
     public function testSerialization()
     {

@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
-            new Wk\VersionBundle\WkVersionBundle(),
+            new Wk\BaseBundle\WkBaseBundle(),
         );
 
         return $bundles;
