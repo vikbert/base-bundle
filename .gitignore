@@ -1,0 +1,8 @@
+build
+phpunit.xml
+coverage
+cache
+logs
+composer.lock
+composer.phar
+vendor
