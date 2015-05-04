@@ -24,3 +24,15 @@ Register your bundle in the `AppKernel.php`
         return $bundles;
     }
 
+Configuration
+-------------
+
+Add persistance service for MongoDB:
+
+    services:
+        wk_base.abstract:
+            class: Wk\BaseBundle\Services\PersistenceService
+            abstract: true
+            arguments: ['@doctrine_mongodb.odm.document_manager']
+            calls:
+                - [setLogger, ["@logger"]]
