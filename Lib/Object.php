@@ -30,3 +30,4 @@ class Object
         return $result;
     }
 }
+

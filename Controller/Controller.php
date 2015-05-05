@@ -25,8 +25,9 @@ class Controller extends FOSRestController
      *
      * @return BadRequestHttpException
      */
-    public function createBadRequestException($message = 'Bad Request', \Exception $previous = null, $code = 0)
+    protected function createBadRequestException($message = 'Bad Request', \Exception $previous = null, $code = 0)
     {
         return new BadRequestHttpException($message, $previous, $code);
     }
 }
+

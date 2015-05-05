@@ -78,3 +78,4 @@ class RedirectController extends Framework\RedirectController
         return $response;
     }
 }
+

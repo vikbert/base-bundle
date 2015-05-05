@@ -44,3 +44,4 @@ abstract class DocumentManagerAwareCommand extends ContainerAwareCommand
         $this->documentManager = $documentManager;
     }
 }
+
