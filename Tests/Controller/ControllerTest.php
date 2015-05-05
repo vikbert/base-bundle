@@ -44,7 +44,9 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
     public function testCreateBadRequestException($message, $code)
     {
         $controller = new Controller();
-        $exception = $controller->createBadRequestException($message, null, $code);
+        $method = new \ReflectionMethod(get_class($controller), 'createBadRequestException');
+        $method->setAccessible(true);
+        $exception = $method->invokeArgs($controller, array($message, null, $code));
 
         $this->assertEquals($message, $exception->getMessage(), "Exception message is not equal to $message");
         $this->assertEquals($code, $exception->getCode(), "Exception code is not equal to $code");
