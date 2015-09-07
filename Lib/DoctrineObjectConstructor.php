@@ -67,22 +67,23 @@ class DoctrineObjectConstructor implements ObjectConstructorInterface
 
         // Fallback to default constructor if missing identifier(s)
         $classMetadata = $objectManager->getClassMetadata($metadata->name);
-        $identifierList = array();
+        $identifier = null;
 
         foreach ($classMetadata->getIdentifierFieldNames() as $name) {
-            if (!array_key_exists($name, $data)) {
-                return $this->fallbackConstructor->construct($visitor, $metadata, $data, $type, $context);
-            }
+            if (array_key_exists($name, $data)) {
+                $identifier = $data[$name];
 
-            $identifierList[$name] = $data[$name];
+                break;
+            }
         }
 
         // Entity update, try to load it from database
-        $object = $objectManager->find($metadata->name, $identifierList);
+        $object = $objectManager->find($metadata->name, $identifier);
 
-        // Entity with that identifier didn't exist, create a new Entity
         if (!is_object($object)) {
-            return $this->fallbackConstructor->construct($visitor, $metadata, $data, $type, $context);
+            // Entity with that identifier didn't exist, create a new Entity
+            $reflection = new \ReflectionClass($metadata->name);
+            $object = $reflection->newInstance();
         }
 
         $objectManager->initializeObject($object);
