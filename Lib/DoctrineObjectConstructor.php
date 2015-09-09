@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: thomas
- * Date: 06.03.15
- * Time: 16:30
- */
 
 namespace Wk\BaseBundle\Lib;
 
@@ -67,23 +61,21 @@ class DoctrineObjectConstructor implements ObjectConstructorInterface
 
         // Fallback to default constructor if missing identifier(s)
         $classMetadata = $objectManager->getClassMetadata($metadata->name);
-        $identifier = null;
+        $identifierList = array();
 
         foreach ($classMetadata->getIdentifierFieldNames() as $name) {
             if (array_key_exists($name, $data)) {
-                $identifier = $data[$name];
-
-                break;
+                $identifierList[$name] = $data[$name];
             }
         }
 
         // Entity update, try to load it from database
-        $object = $objectManager->find($metadata->name, $identifier);
+        $object = $objectManager->find($metadata->name, $identifierList);
 
         if (!is_object($object)) {
             // Entity with that identifier didn't exist, create a new Entity
             $reflection = new \ReflectionClass($metadata->name);
-            $object = $reflection->newInstance();
+            $object = $reflection->newInstanceArgs($identifierList);
         }
 
         $objectManager->initializeObject($object);
@@ -91,3 +83,4 @@ class DoctrineObjectConstructor implements ObjectConstructorInterface
         return $object;
     }
 }
+
